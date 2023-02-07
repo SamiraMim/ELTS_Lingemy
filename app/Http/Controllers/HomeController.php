@@ -8,11 +8,14 @@ use App\Models\RequestList;
 use App\Models\QuizAccessLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\QuizUtilities;
+
 
 class HomeController extends ApiController
 {
+    use QuizUtilities;
+    
     // input : user_id, first_name, last_name, phone_number, ref_id
-
     public function validateRequest( Request $request ) 
     {
         $validator = Validator::make($request->all(), [
@@ -49,7 +52,7 @@ class HomeController extends ApiController
             return $this->addNewRequest($request);
         }
     }
-
+    
     // check duplicate Request
     public function checkDuplicateRequest($request,  $request_id) {
 
@@ -147,29 +150,13 @@ class HomeController extends ApiController
 
         $access_token = QuizAccessLink::where('user_id', $user_id)->where('request_id', $request_id)->get('access_token');
         $access_token = $access_token[0]['access_token'];
-        $ClientUser_info = ClientUser::where('id', $user_id)->get('first_name', 'last_name', 'phone_number');
+        $ClientUser_info = ClientUser::where('id', $user_id)->get(['first_name', 'last_name', 'phone_number']);
         
         $quiz_url = $access_token;
         // send sms
         return $this->successResponse($quiz_url, 201);
     }
 
-    // make Access Token
-    public function makeRandomToken () {
-        do {
-            $token_key = \Str::random(30);
-        } while (QuizAccessLink::where("access_token", "=", $token_key)->first() instanceof QuizAccessLink);
-
-        return $token_key;
-    }
-
-    // make Test Code
-    public function makeRandomCode () {
-        do {
-            $quiz_code = \Str::random(10);
-        } while (QuizAccessLink::where("quiz_code", "=", $quiz_code)->first() instanceof QuizAccessLink);
-        
-        return $quiz_code;
-    }
+   
 
 }

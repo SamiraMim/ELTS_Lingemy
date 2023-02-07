@@ -15,17 +15,18 @@ class CreateEnglishQuestionsTable extends Migration
     {
         Schema::create('english_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('level');
+            $table->integer('level');
             $table->string('stage');
-            $table->string('flag');
+            $table->tinyInteger('flag');
             $table->string('type');
-            $table->string('question_text');
-            $table->string('choice_1');
-            $table->string('choice_2');
-            $table->string('choice_3');
-            $table->string('choice_4');
+            $table->string('content');
+            $table->string('content_url')->nullable();
+            $table->string('choice_1')->nullable();
+            $table->string('choice_2')->nullable();
+            $table->string('choice_3')->nullable();
+            $table->string('choice_4')->nullable();
             $table->string('score');
-            $table->string('answer');
+            $table->string('answer')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

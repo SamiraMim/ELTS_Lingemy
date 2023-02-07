@@ -18,8 +18,8 @@ class CreateRandomQuestionsTable extends Migration
             $table->string('quiz_code');
             $table->foreignId('question_id');
             $table->string('type');
-            $table->string('user_answer');
-            $table->string('grade');
+            $table->string('user_answer')->nullable();
+            $table->string('grade')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

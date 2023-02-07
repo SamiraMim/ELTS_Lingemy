@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('Home');
-// });
+Route::get( '/{path?}', function(){
+    return view( 'Home' );
+} )->where('path', '.*');
+
+// Route::get('/testfunc', [HomeController::class, 'makeRandomQuestions']);

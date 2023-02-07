@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralAnswer extends Model
 {
     use HasFactory;
+    protected $table = 'general_answers';
+    protected $guarded = [];
 }

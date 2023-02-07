@@ -15,7 +15,7 @@ class CreateGeneralQuestionsTable extends Migration
     {
         Schema::create('general_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question_text');
+            $table->string('content');
             $table->string('choice_1');
             $table->string('choice_2');
             $table->string('choice_3');
