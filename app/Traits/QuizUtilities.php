@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits;
 
+use App\Models\QuizAccessLink;
 use App\Models\RandomQuestion;
 use App\Models\EnglishQuestion;
 
@@ -28,10 +29,7 @@ trait QuizUtilities {
     public function makeRandomQuestions ($quiz_code, $level) {
         
         $checkExist = RandomQuestion::where('quiz_code', $quiz_code)->exists();
-        if($checkExist) {
-            $random_questions = RandomQuestion::where('quiz_code', $quiz_code)->get();
-            return response()->json($random_questions);
-        } else {
+        if(!$checkExist) {
             $easy_ids = EnglishQuestion::where('level', $level)->where('stage', 'easy')->get('id')->toArray();
             $easy_ids = array_column($easy_ids, 'id');
             $medium_ids = EnglishQuestion::where('level', $level)->where('stage', 'medium')->get('id')->toArray();
@@ -40,6 +38,8 @@ trait QuizUtilities {
             $hard_ids = array_column($hard_ids, 'id');
 
             $question_ids = [];
+            
+            // tedad soal entekhabi az har basket: weight
             $weight = 4;
 
             for ( $i = 0 ; $i < $weight ; $i++ ) {
@@ -65,10 +65,9 @@ trait QuizUtilities {
                     'status' => 1,
                 ]);
                 $random_question->save();
-            }
-
-            $random_questions = RandomQuestion::where('quiz_code', $quiz_code)->get();
-            return response()->json($random_questions);
+            }           
         }
+
+        return 'created';
     }
 }

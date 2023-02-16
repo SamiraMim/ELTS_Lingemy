@@ -23,5 +23,12 @@ use App\Http\Controllers\QuizController;
 Route::post('/request', [HomeController::class, 'validateRequest']);
 
 Route::get('/quiz/{token}', [QuizController::class, 'index']);
-Route::get('/questions/{id}', [QuizController::class, 'getQuestion']);
-Route::post('/questions', [QuizController::class, 'store']);
+Route::post('/quiz', [QuizController::class, 'startQuiz']);
+
+Route::post('/current-question', [QuizController::class, 'getCurrentQuestion']);
+Route::post('/general-question', [QuizController::class, 'generalQuestionHandler']);
+Route::post('/english-level', [QuizController::class, 'levelHandler']);
+
+Route::post('/current-english-question', [QuizController::class, 'getCurrentEngQuestion']);
+Route::post('/english-question', [QuizController::class, 'englishQuestionHandler']);
+
