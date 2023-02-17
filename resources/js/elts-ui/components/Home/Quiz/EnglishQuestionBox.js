@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 import { useEffect, useState} from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';   
 
-function Question(props) {
-    
+function EnglishQuestionBox(props) {
     const [question, setQuestion] = useState({content: '', choice_1: '', choice_2: '', choice_3: '', choice_4: ''});
     const location = useLocation();
+    const [count, setCount] = useState(1); 
     const [answer, setAnswer] = useState({id: '', value: ''});
     const [quizCode, setQuizCode] = useState(null);
     const [error, setError] = useState('');
@@ -14,14 +14,14 @@ function Question(props) {
 
     useEffect(() => {
         if (location.state != null) {
-            setQuizCode(location.state.data.quiz_code);
-            // ---------- get Current Question ----------
-            var quiz_code = location.state.data.quiz_code;
+            setQuizCode(location.state.quiz_code);
+            // ---------- get Current unanswered Question ----------
+            var quiz_code = location.state.quiz_code;
             var axios = require('axios');
             // var data = JSON.stringify(answers);
             var config = {
                 method: 'post',
-                url: 'http://127.0.0.1:8000/api/current-question',
+                url: 'http://127.0.0.1:8000/api/current-english-question',
                 headers: {'Content-Type': 'application/json'},
                 data : {'quiz_code' : quiz_code }
             };
@@ -30,7 +30,7 @@ function Question(props) {
                 if (response.data.message == 'question') {
                     setQuestion(response.data.data);
                 } else {
-                    navigate('/level',{ state: {'quiz_code':quiz_code} });
+                    navigate('/quiz-end');
                 }
             })
             .catch(function (error) {
@@ -50,7 +50,7 @@ function Question(props) {
         // var data = JSON.stringify(answers);
         var config = {
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/general-question',
+            url: 'http://127.0.0.1:8000/api/english-question',
             headers: {'Content-Type': 'application/json'},
             data : {
                 'quiz_code': quizCode,
@@ -61,8 +61,9 @@ function Question(props) {
         .then(function (response) {
             if (response.data.message == 'question') {
                 setQuestion(response.data.data);
+                setCount(count + 1);
             } else {
-                navigate('/level',{ state: {'quiz_code':quizCode} });
+                navigate('/quiz-end');
             }
         })
         .catch(function (error) {
@@ -74,7 +75,7 @@ function Question(props) {
 
         return (
             <Container>
-                <h1 className='m-2'>Quiz</h1>
+                <h1 className='m-2'>English Quiz</h1>
                 <Row>
                     <Col>
                         <Card>
@@ -128,7 +129,6 @@ function Question(props) {
                 </div>
             </div>
         );
-
     }
 }
-export default Question;
+export default EnglishQuestionBox;

@@ -2,14 +2,14 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 
-function FinishQuiz () {
+function EndPage () {
     return(
-        <Container>
+        <Container className="text-center p-4">
             <Row>
                 <Col>
-                    <Card className="mt-5">
+                    <Card>
                         <Card.Body>
-                            <h1>Your Quiz finished</h1>
+                            <h1 className="m-3">Your Quiz finished</h1>
                             <Link to="/" className="btn btn-secondary m-1">Return Home</Link>
                         </Card.Body>
                     </Card>
@@ -19,4 +19,4 @@ function FinishQuiz () {
         </Container>
     );
 }
-export default FinishQuiz;
+export default EndPage;

@@ -2,9 +2,7 @@ import { useEffect, useState  } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-
-
-function Level () {
+function QuestionLevel () {
 
     const [level, setLevel] = useState(null);
     const [quizCode, setQuizCode] = useState(null);
@@ -38,13 +36,13 @@ function Level () {
         });
     }
     return (
-        <Container>
+        <Container className="text-center p-4">
             <Row>
                 <Col>
-                    <Card className="mt-5">
+                    <Card>
                         <Card.Body>
-                            <h5>Enter Your English Level from 1 to 5:</h5>
-                            <input type="text" name="level" id="level" onChange={(e) => setLevel(e.target.value)} />
+                            <h3 className="m-2">Enter Your English Level from 1 to 5:</h3>
+                            <input className="m-2" type="text" name="level" id="level" onChange={(e) => setLevel(e.target.value)} />
                             <br/>
                             <Button className="btn-secondary m-1" onClick={sendLevel}>Send</Button>
                         </Card.Body>
@@ -56,4 +54,4 @@ function Level () {
     );
 
 }
-export default Level;
+export default QuestionLevel;

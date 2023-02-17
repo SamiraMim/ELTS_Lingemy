@@ -1,0 +1,19 @@
+aside {
+    background-color: blue;
+    height: 100vh;
+}
+.sidebar-menu-body {
+    width: 100%;
+    /* direction: rtl; */
+
+}
+.sidebar-menu-nav {
+    background-color: aquamarine;
+    /* padding: 0 20px; */
+}
+.sidebar-menu-sub {
+    background-color: #fff;
+    content: 'm';
+    color: red;
+    padding: 0 20px;
+}

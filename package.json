@@ -16,11 +16,16 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.58.2",
+        "sass-loader": "^10.4.1"
     },
     "dependencies": {
         "bootstrap": "^5.2.3",
+        "node-sass": "^8.0.0",
         "react-bootstrap": "^2.7.0",
+        "react-bootstrap-sidebar-menu": "^2.0.3",
         "react-router-dom": "^6.8.0"
     }
 }
