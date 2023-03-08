@@ -8,29 +8,29 @@ function QuestionBox(props) {
     const [question, setQuestion] = useState({content: '', choice_1: '', choice_2: '', choice_3: '', choice_4: ''});
     const location = useLocation();
     const [answer, setAnswer] = useState({id: '', value: ''});
-    const [quizCode, setQuizCode] = useState(null);
+    const [examCode, setExamCode] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         if (location.state != null) {
-            setQuizCode(location.state.data.quiz_code);
+            setExamCode(location.state.data.exam_code);
             // ---------- get Current Question ----------
-            var quiz_code = location.state.data.quiz_code;
+            var exam_code = location.state.data.exam_code;
             var axios = require('axios');
             // var data = JSON.stringify(answers);
             var config = {
                 method: 'post',
                 url: 'http://127.0.0.1:8000/api/current-question',
                 headers: {'Content-Type': 'application/json'},
-                data : {'quiz_code' : quiz_code }
+                data : {'exam_code' : exam_code }
             };
             axios(config)
             .then(function (response) {
                 if (response.data.message == 'question') {
                     setQuestion(response.data.data);
                 } else {
-                    navigate('/question-level',{ state: {'quiz_code':quiz_code} });
+                    navigate('/question-level',{ state: {'exam_code':exam_code} });
                 }
             })
             .catch(function (error) {
@@ -38,7 +38,7 @@ function QuestionBox(props) {
             });
         } 
         else {
-            navigate('/question-level',{ state: {'quiz_code':quizCode} });
+            navigate('/question-level',{ state: {'exam_code':examCode} });
         }
     }, []);
 
@@ -51,7 +51,7 @@ function QuestionBox(props) {
             url: 'http://127.0.0.1:8000/api/general-question',
             headers: {'Content-Type': 'application/json'},
             data : {
-                'quiz_code': quizCode,
+                'exam_code': examCode,
                 'answer': answer
             }
         };
@@ -60,7 +60,7 @@ function QuestionBox(props) {
             if (response.data.message == 'question') {
                 setQuestion(response.data.data);
             } else {
-                navigate('/question-level',{ state: {'quiz_code':quizCode} });
+                navigate('/question-level',{ state: {'exam_code':examCode} });
             }
         })
         .catch(function (error) {
@@ -72,7 +72,7 @@ function QuestionBox(props) {
 
         return (
             <Container>
-                <h1 className='m-2'>Quiz</h1>
+                <h1 className='m-2'>Exam</h1>
                 <Row>
                     <Col>
                         <Card>

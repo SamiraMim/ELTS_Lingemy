@@ -18,7 +18,7 @@ class CreateRequestListsTable extends Migration
             $table->foreignId('user_id');
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('ref_num')->unique();
-            $table->string('type')->default('quiz');
+            $table->string('type')->default('exam');
             $table->tinyInteger('status');
             $table->date('date');
             $table->timestamps();

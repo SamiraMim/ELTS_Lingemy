@@ -2,26 +2,26 @@ import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const StartPage = () => {
-    const [quizCode, setQuizCode] = useState(null);
+function StartPage () {
+    const [examCode, setExamCode] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const sendQuizCode = () => {
+    const sendExamCode = () => {
         var axios = require('axios');
         // var data = JSON.stringify(code);
         var config = {
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/quiz',
+            url: 'http://127.0.0.1:8000/api/exam',
             headers: {'Content-Type': 'application/json'},
-            data : {'quiz_code': quizCode}
+            data : {'exam_code': examCode}
         };
         axios(config)
         .then(function (response) {
             navigate('/questions',{ state:response.data });
         })
-        .catch(function (error) {
-            setError('Not Registered');
+        .catch(function (err) {
+            setError(err.message);
         });
 
     }
@@ -31,12 +31,12 @@ const StartPage = () => {
                 <Col>
                 <Card>
                     <Card.Body>
-                        <h3 className="m-2">Please enter your Quiz Code</h3>
-                        <label className="m-2" htmlFor="quiz-code">Quiz Code: </label>{' '}
-                        <input className="m-2" type="text" name="quiz-code" id="quiz-code" onChange={ (e) => setQuizCode(e.target.value) } />
+                        <h3 className="m-2">Please enter your Exam Code</h3>
+                        <label className="m-2" htmlFor="exam-code">Exam Code: </label>{' '}
+                        <input className="m-2" type="text" name="exam-code" id="exam-code" onChange={ (e) => setExamCode(e.target.value) } />
                         <br/>
                         <h4 className="m-2" style={{color: 'red'}}>{error}</h4>
-                        <Button className='btn btn-info mt-4 px-4 py-2' onClick={sendQuizCode}>Start Quiz</Button>
+                        <Button className='btn btn-info mt-4 px-4 py-2' onClick={sendExamCode}>Start Exam</Button>
                     </Card.Body>
                 </Card>
                 </Col>

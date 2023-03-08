@@ -1,8 +1,10 @@
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import {Link, NavLink} from 'react-router-dom';
 
 
-const SideMenu = () => {
+
+function SideMenu () {
     return (
         <SidebarMenu hide='md' variant='dark'>
             <SidebarMenu.Collapse>
@@ -14,24 +16,21 @@ const SideMenu = () => {
                 </SidebarMenu.Header>
                 <SidebarMenu.Body>
                     <SidebarMenu.Nav>
-                        <SidebarMenu.Nav.Link>
+                        <SidebarMenu.Nav.Link  as={NavLink} to="./">
                             <SidebarMenu.Nav.Icon>
                                 # 
                             {/* Menu item icon */}
                             </SidebarMenu.Nav.Icon>
                             <SidebarMenu.Nav.Title>
-                            لیست آزمون ها
-                            {/* Menu item title */}
+                                صفحه اصلی
                             </SidebarMenu.Nav.Title>
                         </SidebarMenu.Nav.Link>
-                        <SidebarMenu.Nav.Link>
+                        <SidebarMenu.Nav.Link as={NavLink} to="./english-question">
                             <SidebarMenu.Nav.Icon>
                                 #
-                            {/* Menu item icon */}
                             </SidebarMenu.Nav.Icon>
                             <SidebarMenu.Nav.Title>
-                            سوالات انگلیسی
-                            {/* Menu item title */}
+                                سوالات انگلیسی
                             </SidebarMenu.Nav.Title>
                         </SidebarMenu.Nav.Link>
                         <SidebarMenu.Nav.Link>
@@ -40,8 +39,16 @@ const SideMenu = () => {
                             {/* Menu item icon */}
                             </SidebarMenu.Nav.Icon>
                             <SidebarMenu.Nav.Title>
-                            سوالات عمومی
-                            {/* Menu item title */}
+                                سوالات عمومی
+                            </SidebarMenu.Nav.Title>
+                        </SidebarMenu.Nav.Link>
+                        <SidebarMenu.Nav.Link  as={NavLink} to="./exam">
+                            <SidebarMenu.Nav.Icon>
+                                # 
+                            {/* Menu item icon */}
+                            </SidebarMenu.Nav.Icon>
+                            <SidebarMenu.Nav.Title>
+                                لیست آزمون ها
                             </SidebarMenu.Nav.Title>
                         </SidebarMenu.Nav.Link>
                     </SidebarMenu.Nav>

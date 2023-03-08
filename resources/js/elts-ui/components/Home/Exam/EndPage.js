@@ -9,7 +9,7 @@ function EndPage () {
                 <Col>
                     <Card>
                         <Card.Body>
-                            <h1 className="m-3">Your Quiz finished</h1>
+                            <h1 className="m-3">Your Exam finished</h1>
                             <Link to="/" className="btn btn-secondary m-1">Return Home</Link>
                         </Card.Body>
                     </Card>

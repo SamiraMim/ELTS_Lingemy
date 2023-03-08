@@ -4,7 +4,7 @@ import AdminRouter from "./components/Admin/Router";;
 
 function App() {
     return (
-        <BrowserRouter basename="api">
+        <BrowserRouter>
             <Routes>
                 <Route path="/*" element = {<HomeRouter />} />
                 <Route path="/admin/*" element = {<AdminRouter />} />

@@ -17,7 +17,7 @@ class CreateGeneralAnswersTable extends Migration
             $table->id();
             $table->foreignId('question_id');
             $table->foreignId('user_id');
-            $table->string('quiz_code');
+            $table->string('exam_code');
             $table->string('user_answer');
             $table->timestamps();
         });

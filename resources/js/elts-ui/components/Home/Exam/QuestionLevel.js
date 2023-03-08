@@ -5,13 +5,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function QuestionLevel () {
 
     const [level, setLevel] = useState(null);
-    const [quizCode, setQuizCode] = useState(null);
+    const [examCode, setExamCode] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (location.state != null) {
-            setQuizCode(location.state.quiz_code);
+            setExamCode(location.state.exam_code);
         }
     });
 
@@ -23,13 +23,13 @@ function QuestionLevel () {
             url: 'http://127.0.0.1:8000/api/english-level',
             headers: {'Content-Type': 'application/json'},
             data : {
-                'quiz_code' : quizCode,
+                'exam_code' : examCode,
                 'english_level' : level 
             }
         };
         axios(config)
         .then(function (response) {
-            navigate('/english-questions',{ state: {'quiz_code':quizCode} })
+            navigate('/english-questions',{ state: {'exam_code':examCode} })
         })
         .catch(function (error) {
             setError('Error');

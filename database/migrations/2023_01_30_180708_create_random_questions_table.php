@@ -15,7 +15,7 @@ class CreateRandomQuestionsTable extends Migration
     {
         Schema::create('random_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('quiz_code');
+            $table->string('exam_code');
             $table->foreignId('question_id');
             $table->string('type');
             $table->string('user_answer')->nullable();

@@ -13,7 +13,7 @@ function Header() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/" className={(navData) => navData.isActive ? "active" : ""}>Home</Nav.Link>
-            <Nav.Link as={NavLink} to="/quiz" className={(navData) => navData.isActive ? "active" : ""}>Quiz</Nav.Link>
+            <Nav.Link as={NavLink} to="/exam" className={(navData) => navData.isActive ? "active" : ""}>Exam</Nav.Link>
             <Nav.Link as={NavLink} to="/admin" className={(navData) => navData.isActive ? "active" : ""}>Admin</Nav.Link>
           </Nav>
         </Navbar.Collapse>

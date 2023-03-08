@@ -1,17 +1,17 @@
 <?php
 namespace App\Traits;
 
-use App\Models\QuizAccessLink;
+use App\Models\AccessLink;
 use App\Models\RandomQuestion;
 use App\Models\EnglishQuestion;
 
-trait QuizUtilities {
+trait ExamUtilities {
 
     // make Access Token
     public function makeRandomToken () {
         do {
             $token_key = \Str::random(30);
-        } while (QuizAccessLink::where("access_token", "=", $token_key)->first() instanceof QuizAccessLink);
+        } while (AccessLink::where("access_token", "=", $token_key)->first() instanceof AccessLink);
 
         return $token_key;
     }
@@ -19,16 +19,16 @@ trait QuizUtilities {
     // make Test Code
     public function makeRandomCode () {
         do {
-            $quiz_code = \Str::random(10);
-        } while (QuizAccessLink::where("quiz_code", "=", $quiz_code)->first() instanceof QuizAccessLink);
+            $exam_code = \Str::random(10);
+        } while (AccessLink::where("exam_code", "=", $exam_code)->first() instanceof AccessLink);
         
-        return $quiz_code;
+        return $exam_code;
     }
 
     // make Random Questions
-    public function makeRandomQuestions ($quiz_code, $level) {
+    public function makeRandomQuestions ($exam_code, $level) {
         
-        $checkExist = RandomQuestion::where('quiz_code', $quiz_code)->exists();
+        $checkExist = RandomQuestion::where('exam_code', $exam_code)->exists();
         if(!$checkExist) {
             $easy_ids = EnglishQuestion::where('level', $level)->where('stage', 'easy')->get('id')->toArray();
             $easy_ids = array_column($easy_ids, 'id');
@@ -59,7 +59,7 @@ trait QuizUtilities {
             }
             foreach ($question_ids as $q_id) {
                 $random_question = new RandomQuestion([
-                    'quiz_code' => $quiz_code,
+                    'exam_code' => $exam_code,
                     'question_id' => $q_id,
                     'type' => 'text',
                     'status' => 1,

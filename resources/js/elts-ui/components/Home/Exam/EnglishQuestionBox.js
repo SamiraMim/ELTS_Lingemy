@@ -8,29 +8,29 @@ function EnglishQuestionBox(props) {
     const location = useLocation();
     const [count, setCount] = useState(1); 
     const [answer, setAnswer] = useState({id: '', value: ''});
-    const [quizCode, setQuizCode] = useState(null);
+    const [examCode, setExamCode] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         if (location.state != null) {
-            setQuizCode(location.state.quiz_code);
+            setExamCode(location.state.exam_code);
             // ---------- get Current unanswered Question ----------
-            var quiz_code = location.state.quiz_code;
+            var exam_code = location.state.exam_code;
             var axios = require('axios');
             // var data = JSON.stringify(answers);
             var config = {
                 method: 'post',
                 url: 'http://127.0.0.1:8000/api/current-english-question',
                 headers: {'Content-Type': 'application/json'},
-                data : {'quiz_code' : quiz_code }
+                data : {'exam_code' : exam_code }
             };
             axios(config)
             .then(function (response) {
                 if (response.data.message == 'question') {
                     setQuestion(response.data.data);
                 } else {
-                    navigate('/quiz-end');
+                    navigate('/exam-end');
                 }
             })
             .catch(function (error) {
@@ -38,7 +38,7 @@ function EnglishQuestionBox(props) {
             });
         } 
         else {
-            navigate('/level',{ state: {'quiz_code':quizCode} });
+            navigate('/level',{ state: {'exam_code':examCode} });
             // set a reference to dom question box and display: none;
             // show a dom that says Exam is finished!
         }
@@ -53,7 +53,7 @@ function EnglishQuestionBox(props) {
             url: 'http://127.0.0.1:8000/api/english-question',
             headers: {'Content-Type': 'application/json'},
             data : {
-                'quiz_code': quizCode,
+                'exam_code': examCode,
                 'answer': answer
             }
         };
@@ -63,7 +63,7 @@ function EnglishQuestionBox(props) {
                 setQuestion(response.data.data);
                 setCount(count + 1);
             } else {
-                navigate('/quiz-end');
+                navigate('/exam-end');
             }
         })
         .catch(function (error) {
@@ -75,7 +75,7 @@ function EnglishQuestionBox(props) {
 
         return (
             <Container>
-                <h1 className='m-2'>English Quiz</h1>
+                <h1 className='m-2'>English Exam</h1>
                 <Row>
                     <Col>
                         <Card>

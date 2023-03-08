@@ -13,7 +13,7 @@ function AdminHeader() {
           <Nav className="me-auto">
             <NavDropdown title="تنظیمات" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to="/" >Home</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/quiz" >Quiz</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/exam" >Exam</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
