@@ -33,22 +33,13 @@ function SideMenu () {
                                 سوالات انگلیسی
                             </SidebarMenu.Nav.Title>
                         </SidebarMenu.Nav.Link>
-                        <SidebarMenu.Nav.Link>
+                        <SidebarMenu.Nav.Link  as={NavLink} to="./client-user">
                             <SidebarMenu.Nav.Icon>
                                 # 
                             {/* Menu item icon */}
                             </SidebarMenu.Nav.Icon>
                             <SidebarMenu.Nav.Title>
-                                سوالات عمومی
-                            </SidebarMenu.Nav.Title>
-                        </SidebarMenu.Nav.Link>
-                        <SidebarMenu.Nav.Link  as={NavLink} to="./exam">
-                            <SidebarMenu.Nav.Icon>
-                                # 
-                            {/* Menu item icon */}
-                            </SidebarMenu.Nav.Icon>
-                            <SidebarMenu.Nav.Title>
-                                لیست آزمون ها
+                                لیست شرکت کنندگان
                             </SidebarMenu.Nav.Title>
                         </SidebarMenu.Nav.Link>
                     </SidebarMenu.Nav>

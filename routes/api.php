@@ -4,8 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\EngQuestionController;
-use App\Http\Controllers\admin\ExamCorrectionController;
+use App\Http\Controllers\Admin\MentorController;
+use App\Http\Controllers\Admin\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ Route::post('/current-english-question', [ExamController::class, 'getCurrentEngQ
 Route::post('/english-question', [ExamController::class, 'englishQuestionHandler']);
 
 // Admin Routes
-Route::apiResource('/admin/english-question', EngQuestionController::class);
-Route::apiResource('/admin/exam', ExamCorrectionController::class);
+Route::apiResource('/admin/english-question', QuestionController::class);
+Route::apiResource('/admin/client-user', MentorController::class);
 
 

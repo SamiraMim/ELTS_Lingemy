@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\EnglishQuestion;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
+use App\Models\EnglishQuestion;
+use Carbon\Carbon;
 
-class EngQuestionController extends ApiController
+
+class QuestionController extends ApiController
 {
     // Show List of Question
     public function index()
     {
-        // $question_list = EnglishQuestion::all();
         $question_list = EnglishQuestion::paginate(5);
         return $this->successResponse( $question_list, 201);
     }

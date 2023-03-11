@@ -4,7 +4,7 @@ import AdminHeader from './Header';
 import SideMenu from "./SideMenu"
 import Dashboard from "./Dashboard";
 import EngQuestionRouter from "./EnglishQuestion/Router";
-import ExamRouter from "./ExamCorrection/Router";
+import MentorRouter from "./Mentor/Router";
 
 function AdminRouter () {
     return (
@@ -17,9 +17,7 @@ function AdminRouter () {
                         <Routes>
                             <Route path="/" element = {<Dashboard />} />
                             <Route path="/english-question/*" element = {<EngQuestionRouter />} />
-                            <Route path="/exam/*" element = {<ExamRouter />} />
-
-                            {/* <Route path="/create-question" element = {<CreateQuestion />} /> */}
+                            <Route path="/client-user/*" element = {<MentorRouter />} />
                         </Routes>
                     </Col>
                 </Row>
